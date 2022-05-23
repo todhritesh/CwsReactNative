@@ -18,7 +18,7 @@ React.useEffect(()=>{
 },[])
 
   return (
-    <Stack.Navigator initialRouteName='logo'>
+    <Stack.Navigator initialRouteName='login'>
         {splashScreen && <Stack.Screen name="logo" options={{headerShown:false}} component={Logo} /> }
         <Stack.Screen name="stackHome" options={{title:"Code With SadiQ"}} component={StackHomeScreen} />
         <Stack.Screen name="login" options={{title:"Login"}} component={Login} />

@@ -1,8 +1,9 @@
 import { View, Text , StyleSheet ,TextInput  } from 'react-native'
-import React from 'react'
+import React,{forwardRef} from 'react'
 
-const CustomFormField = (props) => {
-  const {label,...prop} = props
+const CustomFormField = forwardRef((props,ref) => {
+  const {label,disabled,...prop} = props
+  const disable = disabled==undefined || !disabled ? false : true ;
 const styles = StyleSheet.create({
     InputContainer:{
         backgroundColor:"#ecf0f1",
@@ -20,16 +21,17 @@ const styles = StyleSheet.create({
         borderRadius:10,
         paddingVertical:0,
         fontSize:18,
-        color:"black",
-        paddingLeft:10
+        color: disable ? "grey" : "black",
+        paddingLeft:10,
+        backgroundColor: disable ? "#c8d6e5":"#ecf0f1"
     }
 })
   return (
-    <View style={styles.InputContainer}>
+    <View pointerEvents={disable ? "none" : "auto"} style={styles.InputContainer}>
         <Text style={styles.label}>{label}</Text>
-        <TextInput placeholderTextColor="grey"  height={40} {...prop} style={styles.input} />
+        <TextInput ref={ref} placeholderTextColor="grey"  height={40} {...prop} style={styles.input} />
     </View>
   )
-}
+})
 
 export default CustomFormField
